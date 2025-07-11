@@ -2,6 +2,40 @@
 
 A comprehensive job portal backend system built with Node.js, Express, TypeScript, MongoDB, and Socket.IO.
 
+## 🚀 Live Demo & Documentation
+
+### 🌐 Deployed Application
+
+- **Live API**: [https://jobportal-compileq.onrender.com](https://jobportal-compileq.onrender.com)
+- **Health Check**: [https://jobportal-compileq.onrender.com/api/health](https://jobportal-compileq.onrender.com/api/health)
+
+### 📖 API Documentation
+
+- **Swagger UI**: [https://jobportal-compileq.onrender.com/api-docs](https://jobportal-compileq.onrender.com/api-docs)
+- **Postman Collection**: [https://documenter.getpostman.com/view/33290465/2sB34fnM83](https://documenter.getpostman.com/view/33290465/2sB34fnM83)
+
+### 🔑 Sample Credentials for Testing
+
+#### Admin Account
+
+- **Email**: `admin@example.com`
+- **Password**: `password123`
+- **Role**: Admin (Full system access)
+
+#### Employer Account
+
+- **Email**: `employer@example.com`
+- **Password**: `password123`
+- **Role**: Employer (Can create jobs, view applications)
+
+#### Candidate Account
+
+- **Email**: `candidate@example.com`
+- **Password**: `password123`
+- **Role**: Candidate (Can apply for jobs)
+
+> **Note**: These are demo accounts for testing purposes. In production, use secure passwords and proper authentication.
+
 ## Features
 
 ### 🔐 Authentication & Authorization
@@ -88,13 +122,15 @@ src/
 ├── sockets/
 │   └── socketHandlers.ts    # Socket.IO event handlers
 ├── docs/
-│   └── API_Documentation.md           # API Documentations
-│   └── Authentication_Authorization.md           # Auth Documentations
-│   └── Database_Schema.md           # Database Schema Documentations
-│   └── Deployment_Guide.md           # Deployment Documentations
-│   └── Error_Handling.md           # Error Handling Documentations
-│   └── README.md           # README Documentations
-│   └── Testing_Guide.md           # Testing Guide Documentations
+│   ├── API_Documentation.md           # Complete API reference
+│   ├── Authentication_Authorization.md # Auth implementation guide
+│   ├── Database_Schema.md             # Database models and relationships
+│   ├── Deployment_Guide.md            # Production deployment guide
+│   ├── Error_Handling.md              # Error handling documentation
+│   ├── Handshake_System.md            # Admin bootstrapping system
+│   ├── README.md                      # Documentation overview
+│   ├── Swagger_Documentation.md       # Swagger/OpenAPI usage guide
+│   └── Testing_Guide.md               # Testing strategies and examples
 ├── utils/
 │   └── helpers.ts           # Utility functions
 └── index.ts                 # Application entry point
@@ -150,6 +186,38 @@ npm run dev
 npm run build
 npm start
 ```
+
+## 🚀 Quick Start - Testing the API
+
+### Option 1: Use the Live API
+
+Test the deployed API immediately without setup:
+
+```bash
+# Test health endpoint
+curl https://jobportal-compileq.onrender.com/api/health
+
+# Login as admin
+curl -X POST https://jobportal-compileq.onrender.com/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"admin@jobportal.com","password":"password123"}'
+
+# Use the returned token for authenticated requests
+curl -X GET https://jobportal-compileq.onrender.com/api/admin/stats \
+  -H "Authorization: Bearer YOUR_TOKEN_HERE"
+```
+
+### Option 2: Use Swagger UI
+
+1. Visit [https://jobportal-compileq.onrender.com/api-docs](https://jobportal-compileq.onrender.com/api-docs)
+2. Click "Authorize" and use sample credentials
+3. Test endpoints directly in the browser
+
+### Option 3: Import Postman Collection
+
+1. Visit [Postman Documentation](https://documenter.getpostman.com/view/33290465/2sB34fnM83)
+2. Click "Run in Postman" to import the collection
+3. Use the provided environment variables
 
 ## API Endpoints
 
@@ -244,27 +312,81 @@ npm start
 - Database operation errors
 - Real-time error notifications
 
+## 📖 API Documentation Features
+
+### Swagger/OpenAPI 3.0
+
+- **Interactive Testing**: Test all endpoints directly from the browser
+- **Schema Validation**: Complete request/response schemas
+- **Authentication**: Built-in JWT Bearer token support
+- **Real-time Examples**: See actual API responses
+- **Export Options**: Download OpenAPI specification
+
+### Postman Collection
+
+- **Complete Test Suite**: All endpoints with examples
+- **Environment Variables**: Pre-configured for different environments
+- **Test Scripts**: Automated response validation
+- **Easy Import**: One-click import from documentation
+
+### Documentation Structure
+
+- **API Reference**: Complete endpoint documentation
+- **Authentication Guide**: Step-by-step auth implementation
+- **Error Handling**: Comprehensive error response guide
+- **Database Schema**: Complete data model documentation
+- **Testing Guide**: Testing strategies and examples
+- **Deployment Guide**: Production deployment instructions
+
 ## Testing
+
+### Local Testing
 
 Run the application and test endpoints using tools like:
 
-- Postman
-- Insomnia
-- curl
-- Your frontend application
+- **Swagger UI**: Visit `http://localhost:5000/api-docs` for interactive testing
+- **Postman**: Import the collection from the documentation
+- **Insomnia**: Use the exported OpenAPI spec
+- **curl**: Command-line testing
+- **Frontend Application**: Direct API integration
 
-Example test with curl:
+### Live API Testing
+
+Test the deployed API without local setup:
+
+- **Swagger UI**: [https://jobportal-compileq.onrender.com/api-docs](https://jobportal-compileq.onrender.com/api-docs)
+- **Postman Documentation**: [https://documenter.getpostman.com/view/33290465/2sB34fnM83](https://documenter.getpostman.com/view/33290465/2sB34fnM83)
+
+### Example API Tests
+
+**Register a new user:**
 
 ```bash
-# Register a new user
-curl -X POST http://localhost:5000/api/auth/register \
+curl -X POST https://jobportal-compileq.onrender.com/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"email":"test@example.com","password":"password123","role":"candidate"}'
+  -d '{"email":"test@example.com","password":"password123","role":"candidate","firstName":"John","lastName":"Doe"}'
+```
 
-# Login
-curl -X POST http://localhost:5000/api/auth/login \
+**Login with sample credentials:**
+
+```bash
+curl -X POST https://jobportal-compileq.onrender.com/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"test@example.com","password":"password123"}'
+  -d '{"email":"admin@jobportal.com","password":"password123"}'
+```
+
+**Get all jobs:**
+
+```bash
+curl -X GET https://jobportal-compileq.onrender.com/api/jobs \
+  -H "Content-Type: application/json"
+```
+
+**Get admin statistics (requires admin token):**
+
+```bash
+curl -X GET https://jobportal-compileq.onrender.com/api/admin/stats \
+  -H "Authorization: Bearer YOUR_ADMIN_TOKEN_HERE"
 ```
 
 ## Contributing
@@ -278,6 +400,29 @@ curl -X POST http://localhost:5000/api/auth/login \
 ## License
 
 This project is licensed under the ISC License.
+
+## 📚 Additional Resources
+
+### 🔗 Quick Links
+
+- **Live API**: [https://jobportal-compileq.onrender.com](https://jobportal-compileq.onrender.com)
+- **Swagger Documentation**: [https://jobportal-compileq.onrender.com/api-docs](https://jobportal-compileq.onrender.com/api-docs)
+- **Postman Collection**: [https://documenter.getpostman.com/view/33290465/2sB34fnM83](https://documenter.getpostman.com/view/33290465/2sB34fnM83)
+- **Health Check**: [https://jobportal-compileq.onrender.com/api/health](https://jobportal-compileq.onrender.com/api/health)
+
+### 🧪 Test Accounts
+
+- **Admin**: admin@example.com / password123
+- **Employer**: employer@example.com / password123
+- **Candidate**: candidate@example.com / password123
+
+### 📖 Documentation
+
+- Authentication & Authorization Guide
+- Database Schema Documentation
+- Error Handling Reference
+- Testing Guide with Examples
+- Deployment Instructions
 
 ## Support
 

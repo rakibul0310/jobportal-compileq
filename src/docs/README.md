@@ -6,7 +6,7 @@ Welcome to the comprehensive documentation for the Job Portal Backend API. This 
 
 ### 🚀 Getting Started
 
-- **[API Documentation](./API_Documentation.md)** - Complete API reference with all endpoints, request/response formats, and examples
+- **[API Documentation](https://documenter.getpostman.com/view/33290465/2sB34fnM83)** - Complete API reference with all endpoints, request/response formats, and examples
 - **[Authentication & Authorization](./Authentication_Authorization.md)** - JWT authentication, role-based access control, and security implementation
 
 ### 🛠️ Development

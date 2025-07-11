@@ -3,6 +3,7 @@ import express from "express";
 import http from "http";
 import { Server } from "socket.io";
 import { connectDB } from "./config/db";
+import { setupSwagger } from "./config/swagger";
 import {
   errorHandler,
   handleUncaughtException,
@@ -53,12 +54,40 @@ app.use((req, res, next) => {
   }
 });
 
+// Setup Swagger documentation
+setupSwagger(app);
+
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/applications", applicationRoutes);
 app.use("/api/admin", adminRoutes);
 
+/**
+ * @swagger
+ * /api/health:
+ *   get:
+ *     summary: Health check endpoint
+ *     tags: [System]
+ *     responses:
+ *       200:
+ *         description: API is running and healthy
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "OK"
+ *                 message:
+ *                   type: string
+ *                   example: "Job Portal API is running"
+ *                 timestamp:
+ *                   type: string
+ *                   format: date-time
+ *                   example: "2023-12-01T12:00:00.000Z"
+ */
 // Health check endpoint
 app.get("/api/health", (req, res) => {
   res.json({
@@ -77,15 +106,6 @@ app.use(errorHandler);
 // Socket connection handling
 handleSocketConnection(io);
 
-// 404 handler
-app.use("*", notFoundHandler);
-
-// Global error handler
-app.use(errorHandler);
-
-// Socket connection handling
-handleSocketConnection(io);
-
 const PORT = process.env.PORT || 5000;
 
 // Start server and run handshake
@@ -93,7 +113,8 @@ const startServer = async () => {
   try {
     server.listen(PORT, async () => {
       console.log(`🚀 Server running on port ${PORT}`);
-      console.log(`📊 API Documentation: http://localhost:${PORT}/api/health`);
+      console.log(`📊 API Documentation: http://localhost:${PORT}/api-docs`);
+      console.log(`🔍 Health Check: http://localhost:${PORT}/api/health`);
       console.log(`⚡ Socket.IO server ready for real-time connections`);
 
       // Run handshake to ensure admin user exists
