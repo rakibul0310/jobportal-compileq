@@ -1,0 +1,985 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Production build
+dist/
+build/
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+.nyc_output
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+.env.test
+.env.production
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# next.js build output
+.next
+
+# nuxt.js build output
+.nuxt
+
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# TypeScript
+*.tsbuildinfo
+dist/
+build/
+
+# Testing
+coverage/
+.nyc_output/
+test-results/
+junit.xml
+
+# MongoDB
+*.mongodb
+
+# Redis
+dump.rdb
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Upload directories
+uploads/
+public/uploads/
+
+# SSL certificates
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+
+# Docker
+.dockerignore
+Dockerfile.dev
+docker-compose.dev.yml
+docker-compose.override.yml
+
+# Kubernetes
+k8s-dev/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Local development
+.local/
+
+# PM2
+.pm2/
+
+# Backup files
+*.backup
+*.bak
+*.orig
+
+# Database dumps
+*.sql
+*.dump
+
+# Application specific
+sessions/
+public/images/
+public/files/
+
+# Postman collections (if they contain sensitive data)
+# Uncomment if your postman collections contain secrets
+# *.postman_collection.json
+# *.postman_environment.json
+
+# Local configuration files
+config/local.json
+config/development.json
+config/production.json
+
+# Error logs
+error.log
+combined.log
+access.log
+
+# Performance logs
+performance.log
+
+# Debug files
+debug.log
+
+# Profiling files
+*.prof
+
+# Heap snapshots
+*.heapsnapshot
+
+# ESLint cache
+.eslintcache
+
+# Prettier cache
+.prettierignore
+
+# Stylelint cache
+.stylelintcache
+
+# Webpack
+.webpack/
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Runtime
+.runtime/
+
+# Sentry
+.sentryclirc
+
+# Vercel
+.vercel
+
+# Serverless Framework
+.serverless/
+
+# AWS
+.aws/
+
+# Google Cloud
+.gcloud/
+
+# Azure
+.azure/
+
+# Heroku
+.heroku/
+
+# Railway
+.railway/
+
+# Netlify
+.netlify/
+
+# Local Netlify folder
+.netlify
+
+# Firebase
+.firebase/
+firebase-debug.log
+
+# Supabase
+.supabase/
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+
+# Secrets and API keys
+secrets.json
+api-keys.json
+credentials.json
+
+# Local development overrides
+.env.override
+.env.secrets
+
+# Backup and temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*.orig
+*.rej
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Cache directories
+.cache/
+.webpack/
+.rollup.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.tsbuildinfo
+
+# Lock files (uncomment if you want to ignore them)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Generated documentation
+docs/generated/
+api-docs/generated/
+
+# Build artifacts
+artifacts/
+releases/
+
+# Monitoring and observability
+.datadog/
+.newrelic/
+.elastic/
+
+# Local database files
+*.sqlite
+*.sqlite3
+*.db
+
+# Redis dumps
+*.rdb
+
+# Session files
+sessions/
+
+# PID files
+*.pid
+
+# Socket files
+*.sock
+
+# Unix socket files
+*.socket
+
+# Named pipes
+*.pipe
+
+# Shared memory
+*.shm
+
+# Core dumps
+core.*
+
+# Memory dumps
+*.dmp
+
+# Profiling data
+*.cpuprofile
+*.heapprofile
+
+# Coverage reports
+coverage.xml
+coverage.json
+coverage.lcov
+
+# Jest
+jest.config.js.tmp
+
+# Cucumber
+reports/
+
+# Allure
+allure-results/
+allure-report/
+
+# WebDriver
+webdriver/
+chromedriver*
+geckodriver*
+
+# Selenium
+selenium-debug.log
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Cypress
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# TestCafe
+testcafe-report/
+
+# Puppeteer
+.puppeteerrc.js
+
+# Local history (VSCode)
+.history/
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# NetBeans
+nbproject/
+
+# Vim
+*.swp
+*.swo
+Session.vim
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# Local SSL certificates
+localhost.pem
+localhost-key.pem
+cert.pem
+key.pem
+
+# Environment-specific files
+.env.staging
+.env.testing
+.env.integration
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform/
+.terraform.lock.hcl
+
+# Ansible
+*.retry
+
+# Vagrant
+.vagrant/
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Kubernetes
+kubeconfig
+*.kubeconfig
+
+# Helm
+charts/*/charts/
+charts/*/requirements.lock
+
+# Pulumi
+Pulumi.*.yaml
+.pulumi/
+
+# CDK
+cdk.out/
+cdk.context.json
+
+# Nx
+.nx/
+
+# Rush
+common/temp/
+common/deploy/
+
+# Lerna
+lerna-debug.log
+
+# Changesets
+.changeset/
+
+# Turborepo
+.turbo/
+
+# Vercel
+.vercel
+
+# Vite
+vite.config.*.timestamp-*
+
+# Rollup
+rollup.config.*.timestamp-*
+
+# Parcel
+.parcel-cache/
+dist/
+
+# SWC
+.swc/
+
+# Webpack
+.webpack/
+
+# Snowpack
+.snowpack/
+
+# Vite
+.vite/
+
+# Astro
+.astro/
+
+# SvelteKit
+.svelte-kit/
+
+# Remix
+.remix/
+
+# Blitz
+.blitz/
+
+# Redwood
+.redwood/
+
+# T3
+.t3/
+
+# Sanity
+.sanity/
+
+# Contentful
+.contentful/
+
+# Strapi
+.strapi/
+
+# Directus
+.directus/
+
+# Hasura
+.hasura/
+
+# Supabase
+.supabase/
+
+# PlanetScale
+.planetscale/
+
+# Neon
+.neon/
+
+# Xata
+.xata/
+
+# Drizzle
+.drizzle/
+
+# Prisma
+.prisma/
+
+# TypeORM
+.typeorm/
+
+# Sequelize
+.sequelize/
+
+# Mongoose
+.mongoose/
+
+# MikroORM
+.mikro-orm/
+
+# Objection
+.objection/
+
+# Knex
+.knex/
+
+# Bookshelf
+.bookshelf/
+
+# Waterline
+.waterline/
+
+# Sails
+.sails/
+
+# Feathers
+.feathers/
+
+# Nest
+.nest/
+
+# Fastify
+.fastify/
+
+# Koa
+.koa/
+
+# Hapi
+.hapi/
+
+# Restify
+.restify/
+
+# Meteor
+.meteor/
+
+# Stencil
+.stencil/
+
+# Ionic
+.ionic/
+
+# Capacitor
+.capacitor/
+
+# Cordova
+.cordova/
+
+# PhoneGap
+.phonegap/
+
+# Electron
+.electron/
+
+# Tauri
+.tauri/
+
+# Flutter
+.flutter/
+
+# React Native
+.react-native/
+
+# Expo
+.expo/
+
+# Quasar
+.quasar/
+
+# Nuxt
+.nuxt/
+
+# Gridsome
+.gridsome/
+
+# Gatsby
+.gatsby/
+
+# Scully
+.scully/
+
+# Angular
+.angular/
+
+# Vue
+.vue/
+
+# Svelte
+.svelte/
+
+# Solid
+.solid/
+
+# Qwik
+.qwik/
+
+# Fresh
+.fresh/
+
+# Deno
+.deno/
+
+# Bun
+.bun/
+
+# PNPM
+.pnpm/
+
+# Yarn
+.yarn/
+
+# NPM
+.npm/
+
+# Rush
+.rush/
+
+# Nx
+.nx/
+
+# Lerna
+.lerna/
+
+# Turbo
+.turbo/
+
+# Changesets
+.changeset/
+
+# Beachball
+.beachball/
+
+# Semantic Release
+.semantic-release/
+
+# Standard Version
+.standard-version/
+
+# Release It
+.release-it/
+
+# Auto
+.auto/
+
+# Shipjs
+.shipjs/
+
+# GitHub Actions
+.github/workflows/generated/
+
+# GitLab CI
+.gitlab-ci-local/
+
+# CircleCI
+.circleci/local/
+
+# Jenkins
+.jenkins/
+
+# Travis CI
+.travis/
+
+# AppVeyor
+.appveyor/
+
+# Azure DevOps
+.azure/
+
+# Bitbucket Pipelines
+.bitbucket/
+
+# Drone CI
+.drone/
+
+# Buildkite
+.buildkite/
+
+# CodeShip
+.codeship/
+
+# Semaphore
+.semaphore/
+
+# Wercker
+.wercker/
+
+# Shippable
+.shippable/
+
+# Codefresh
+.codefresh/
+
+# Buddy
+.buddy/
+
+# DeployHQ
+.deployhq/
+
+# Octopus Deploy
+.octopus/
+
+# Spinnaker
+.spinnaker/
+
+# Argo
+.argo/
+
+# Tekton
+.tekton/
+
+# Skaffold
+.skaffold/
+
+# Draft
+.draft/
+
+# Tilt
+.tilt/
+
+# Garden
+.garden/
+
+# DevSpace
+.devspace/
+
+# Telepresence
+.telepresence/
+
+# Minikube
+.minikube/
+
+# Kind
+.kind/
+
+# K3s
+.k3s/
+
+# MicroK8s
+.microk8s/
+
+# Rancher
+.rancher/
+
+# OpenShift
+.openshift/
+
+# Istio
+.istio/
+
+# Linkerd
+.linkerd/
+
+# Consul
+.consul/
+
+# Vault
+.vault/
+
+# Nomad
+.nomad/
+
+# Packer
+.packer/
+
+# Vagrant
+.vagrant/
+
+# VirtualBox
+.virtualbox/
+
+# VMware
+.vmware/
+
+# Hyper-V
+.hyperv/
+
+# Parallels
+.parallels/
+
+# QEMU
+.qemu/
+
+# KVM
+.kvm/
+
+# Xen
+.xen/
+
+# LXC
+.lxc/
+
+# LXD
+.lxd/
+
+# Podman
+.podman/
+
+# Buildah
+.buildah/
+
+# Skopeo
+.skopeo/
+
+# CRI-O
+.crio/
+
+# Containerd
+.containerd/
+
+# runc
+.runc/
+
+# gVisor
+.gvisor/
+
+# Kata Containers
+.kata/
+
+# Firecracker
+.firecracker/
+
+# Local development certificates
+*.local.pem
+*.local.key
+dev-cert.pem
+dev-key.pem
+
+# Test databases
+test.db
+test.sqlite
+test.sqlite3
+
+# Backup directories
+backup/
+backups/
+
+# Archive directories
+archive/
+archives/
+
+# Old files
+old/
+deprecated/
+
+# Experimental
+experimental/
+experiments/
+
+# Playground
+playground/
+
+# Sandbox
+sandbox/
+
+# Scratch
+scratch/
+
+# Notes
+notes/
+notes.txt
+notes.md
+TODO.md
+FIXME.md
