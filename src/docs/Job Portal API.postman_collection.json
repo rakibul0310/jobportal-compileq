@@ -1,0 +1,2120 @@
+{
+	"info": {
+		"_postman_id": "5339a897-1bb6-45eb-bd08-15cf3f1ae544",
+		"name": "Job Portal API",
+		"description": "Complete API collection for the Job Portal Backend System with authentication, job management, applications, and admin features.\n\n## Base URL\n\n`http://localhost:5000/api`\n\n## Authentication\n\nMost endpoints require JWT authentication. Include the token in the Authorization header:  \n`Authorization: Bearer`\n\n## Error Handling\n\nAll errors follow a consistent format:\n\n``` json\n{\n  \"success\": false,\n  \"message\": \"Error description\",\n  \"statusCode\": 400,\n  \"timestamp\": \"2025-01-10T...\",\n  \"path\": \"/api/endpoint\",\n  \"method\": \"POST\"\n}\n\n ```",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33290465"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"employer@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"candidate\"\n}"
+						},
+						"url": "{{baseUrl}}/auth/register",
+						"description": "Register a new user account.\n\n**Required Fields:**\n- `email`: Valid email address\n- `password`: Minimum 6 characters\n- `role`: One of 'admin', 'employer', 'candidate'\n\n**Response:**\n- Returns JWT token and user information\n- Status: 201 Created"
+					},
+					"response": [
+						{
+							"name": "Register User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"candidate\"\n}"
+								},
+								"url": "http://localhost:5000/api/auth/register"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "320"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"140-7u+eKsW2DDkzolA1UOMbqrWhZ0k\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Jul 2025 10:46:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User registered successfully\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODZmOWEwMjFlY2MzNTQ1YmY1N2ZmN2QiLCJpYXQiOjE3NTIxNDQzODYsImV4cCI6MTc1Mjc0OTE4Nn0.dpZgYtSFD2pb-87Efg6UPfsC5a1RuMRHIdY64IRWHGU\",\n    \"user\": {\n        \"id\": \"686f9a021ecc3545bf57ff7d\",\n        \"email\": \"john.doe@example.com\",\n        \"role\": \"candidate\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": "{{baseUrl}}/auth/login",
+						"description": "Authenticate user and get JWT token.\n\n**Required Fields:**\n- `email`: User's email address\n- `password`: User's password\n\n**Response:**\n- Returns JWT token and user information\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Login User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"password123\"\n}"
+								},
+								"url": "http://localhost:5000/api/auth/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "308"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"134-LdZk22SAZWmEnpiNE4zI/OxIB9c\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Jul 2025 10:46:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Login successful\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODZmOWEwMjFlY2MzNTQ1YmY1N2ZmN2QiLCJpYXQiOjE3NTIxNDQ0MTAsImV4cCI6MTc1Mjc0OTIxMH0.HdmSfirfW4Gwm73rsFqjkUMPBV9tM8b7Kpeuu-7oohE\",\n    \"user\": {\n        \"id\": \"686f9a021ecc3545bf57ff7d\",\n        \"email\": \"john.doe@example.com\",\n        \"role\": \"candidate\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODZmOWEwMjFlY2MzNTQ1YmY1N2ZmN2QiLCJpYXQiOjE3NTIxNDQ0MTAsImV4cCI6MTc1Mjc0OTIxMH0.HdmSfirfW4Gwm73rsFqjkUMPBV9tM8b7Kpeuu-7oohE"
+							}
+						],
+						"url": "{{baseUrl}}/auth/profile",
+						"description": "Get current user's profile information.\n\n**Authentication Required:** Yes\n\n**Response:**\n- Returns user profile information\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Get Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODZmOWEwMjFlY2MzNTQ1YmY1N2ZmN2QiLCJpYXQiOjE3NTIxNDQ0MTAsImV4cCI6MTc1Mjc0OTIxMH0.HdmSfirfW4Gwm73rsFqjkUMPBV9tM8b7Kpeuu-7oohE"
+									}
+								],
+								"url": "http://localhost:5000/api/auth/profile"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-I5Ee5FVcUf3Sm94N9U0Jw+Cbk6U\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Jul 2025 10:47:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": \"686f9a021ecc3545bf57ff7d\",\n        \"email\": \"john.doe@example.com\",\n        \"role\": \"candidate\",\n        \"isBanned\": false\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "User authentication endpoints for registration, login, and profile management."
+		},
+		{
+			"name": "Jobs",
+			"item": [
+				{
+					"name": "Create Job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for an experienced software engineer to join our team.\",\n  \"companyName\": \"Tech Corp\",\n  \"location\": \"New York, NY\",\n  \"jobType\": \"Full-time\",\n  \"salaryRange\": \"$80,000 - $120,000\",\n  \"skills\": [\"JavaScript\", \"Node.js\", \"React\", \"MongoDB\"]\n}"
+						},
+						"url": "{{baseUrl}}/jobs",
+						"description": "Create a new job posting.\n\n**Authentication Required:** Yes (Employer or Admin only)\n\n**Required Fields:**\n- `title`: Job title\n- `description`: Job description\n- `companyName`: Company name\n- `location`: Job location\n- `jobType`: Type of job (Full-time, Part-time, Contract, Internship)\n\n**Optional Fields:**\n- `salaryRange`: Salary range\n- `skills`: Array of required skills\n\n**Response:**\n- Returns created job information\n- Status: 201 Created"
+					},
+					"response": [
+						{
+							"name": "Job Created Successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for an experienced software engineer to join our team.\",\n  \"companyName\": \"Tech Corp\",\n  \"location\": \"New York, NY\",\n  \"jobType\": \"Full-time\",\n  \"salaryRange\": \"$80,000 - $120,000\",\n  \"skills\": [\"JavaScript\", \"Node.js\", \"React\", \"MongoDB\"]\n}"
+								},
+								"url": "http://localhost:5000/api/jobs"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n  \"message\": \"Job created successfully\",\n  \"job\": {\n    \"_id\": \"60d0fe4f5311236168a109cb\",\n    \"title\": \"Senior Software Engineer\",\n    \"description\": \"We are looking for an experienced software engineer to join our team.\",\n    \"companyName\": \"Tech Corp\",\n    \"location\": \"New York, NY\",\n    \"jobType\": \"Full-time\",\n    \"salaryRange\": \"$80,000 - $120,000\",\n    \"skills\": [\"JavaScript\", \"Node.js\", \"React\", \"MongoDB\"],\n    \"jobStatus\": \"Active\",\n    \"createdBy\": \"60d0fe4f5311236168a109ca\",\n    \"createdAt\": \"2025-01-10T10:00:00.000Z\"\n  }\n}"
+						},
+						{
+							"name": "Create Job",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for an experienced software engineer to join our team.\",\n  \"companyName\": \"Tech Corp\",\n  \"location\": \"New York, NY\",\n  \"jobType\": \"Full-time\",\n  \"salaryRange\": \"$80,000 - $120,000\",\n  \"skills\": [\"JavaScript\", \"Node.js\", \"React\", \"MongoDB\"]\n}"
+								},
+								"url": "{{baseUrl}}/jobs"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "472"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d8-WdRmN2KiZrMDND0Dh7xW4oaZ2vg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 16:44:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Job created successfully\",\n    \"job\": {\n        \"title\": \"Senior Software Engineer\",\n        \"description\": \"We are looking for an experienced software engineer to join our team.\",\n        \"companyName\": \"Tech Corp\",\n        \"location\": \"New York, NY\",\n        \"jobType\": \"Full-time\",\n        \"skills\": [\n            \"JavaScript\",\n            \"Node.js\",\n            \"React\",\n            \"MongoDB\"\n        ],\n        \"createdBy\": \"68713e25ab306f5537e174af\",\n        \"jobStatus\": \"Active\",\n        \"_id\": \"68713f77ab306f5537e174b4\",\n        \"createdAt\": \"2025-07-11T16:44:39.400Z\",\n        \"updatedAt\": \"2025-07-11T16:44:39.400Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/jobs?page=1&limit=10&search=engineer&location=new york&jobType=Full-time",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"jobs"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number (default: 1)"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Number of jobs per page (default: 10)"
+								},
+								{
+									"key": "search",
+									"value": "engineer",
+									"description": "Search in title, description, or company name"
+								},
+								{
+									"key": "location",
+									"value": "new york",
+									"description": "Filter by location"
+								},
+								{
+									"key": "jobType",
+									"value": "Full-time",
+									"description": "Filter by job type"
+								}
+							]
+						},
+						"description": "Get all active job postings with optional filtering and pagination.\n\n**Authentication Required:** Yes\n\n**Query Parameters:**\n- `page`: Page number (default: 1)\n- `limit`: Jobs per page (default: 10)\n- `search`: Search term for title, description, or company\n- `location`: Filter by location\n- `jobType`: Filter by job type\n\n**Response:**\n- Returns paginated job listings\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Get Jobs Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/jobs?page=1&limit=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"jobs"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n  \"jobs\": [\n    {\n      \"_id\": \"60d0fe4f5311236168a109cb\",\n      \"title\": \"Senior Software Engineer\",\n      \"description\": \"We are looking for an experienced software engineer...\",\n      \"companyName\": \"Tech Corp\",\n      \"location\": \"New York, NY\",\n      \"jobType\": \"Full-time\",\n      \"salaryRange\": \"$80,000 - $120,000\",\n      \"skills\": [\"JavaScript\", \"Node.js\", \"React\", \"MongoDB\"],\n      \"jobStatus\": \"Active\",\n      \"createdBy\": {\n        \"_id\": \"60d0fe4f5311236168a109ca\",\n        \"email\": \"employer@example.com\"\n      },\n      \"createdAt\": \"2025-01-10T10:00:00.000Z\"\n    }\n  ],\n  \"totalPages\": 1,\n  \"currentPage\": 1,\n  \"total\": 1\n}"
+						},
+						{
+							"name": "Get All Jobs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/jobs?page=1&limit=10&search=engineer&location=new york&jobType=Full-time",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"jobs"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page number (default: 1)"
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "Number of jobs per page (default: 10)"
+										},
+										{
+											"key": "search",
+											"value": "engineer",
+											"description": "Search in title, description, or company name"
+										},
+										{
+											"key": "location",
+											"value": "new york",
+											"description": "Filter by location"
+										},
+										{
+											"key": "jobType",
+											"value": "Full-time",
+											"description": "Filter by job type"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "518"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"206-j3xS4xx1Zmc0y90Gsk0g/3AdJxI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 16:45:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jobs\": [\n        {\n            \"_id\": \"68713f77ab306f5537e174b4\",\n            \"title\": \"Senior Software Engineer\",\n            \"description\": \"We are looking for an experienced software engineer to join our team.\",\n            \"companyName\": \"Tech Corp\",\n            \"location\": \"New York, NY\",\n            \"jobType\": \"Full-time\",\n            \"skills\": [\n                \"JavaScript\",\n                \"Node.js\",\n                \"React\",\n                \"MongoDB\"\n            ],\n            \"createdBy\": {\n                \"_id\": \"68713e25ab306f5537e174af\",\n                \"email\": \"employer@example.com\"\n            },\n            \"jobStatus\": \"Active\",\n            \"createdAt\": \"2025-07-11T16:44:39.400Z\",\n            \"updatedAt\": \"2025-07-11T16:44:39.400Z\",\n            \"__v\": 0\n        }\n    ],\n    \"totalPages\": 1,\n    \"currentPage\": 1,\n    \"total\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Job by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/jobs/{{jobId}}",
+						"description": "Get a specific job by its ID.\n\n**Authentication Required:** Yes\n\n**Path Parameters:**\n- `jobId`: MongoDB ObjectId of the job\n\n**Response:**\n- Returns job details\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Get Job Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:5000/api/jobs/60d0fe4f5311236168a109cb"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n  \"job\": {\n    \"_id\": \"60d0fe4f5311236168a109cb\",\n    \"title\": \"Senior Software Engineer\",\n    \"description\": \"We are looking for an experienced software engineer...\",\n    \"companyName\": \"Tech Corp\",\n    \"location\": \"New York, NY\",\n    \"jobType\": \"Full-time\",\n    \"salaryRange\": \"$80,000 - $120,000\",\n    \"skills\": [\"JavaScript\", \"Node.js\", \"React\", \"MongoDB\"],\n    \"jobStatus\": \"Active\",\n    \"createdBy\": {\n      \"_id\": \"60d0fe4f5311236168a109ca\",\n      \"email\": \"employer@example.com\"\n    },\n    \"createdAt\": \"2025-01-10T10:00:00.000Z\"\n  }\n}"
+						},
+						{
+							"name": "Get Job by ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"url": "{{baseUrl}}/jobs/{{jobId}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "474"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1da-613YFngWZARFjrQVvux+PoUBtPs\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 16:45:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"job\": {\n        \"_id\": \"68713f77ab306f5537e174b4\",\n        \"title\": \"Senior Software Engineer\",\n        \"description\": \"We are looking for an experienced software engineer to join our team.\",\n        \"companyName\": \"Tech Corp\",\n        \"location\": \"New York, NY\",\n        \"jobType\": \"Full-time\",\n        \"skills\": [\n            \"JavaScript\",\n            \"Node.js\",\n            \"React\",\n            \"MongoDB\"\n        ],\n        \"createdBy\": {\n            \"_id\": \"68713e25ab306f5537e174af\",\n            \"email\": \"employer@example.com\"\n        },\n        \"jobStatus\": \"Active\",\n        \"createdAt\": \"2025-07-11T16:44:39.400Z\",\n        \"updatedAt\": \"2025-07-11T16:44:39.400Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Job",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Senior Full Stack Engineer\",\n  \"salaryRange\": \"$90,000 - $130,000\",\n  \"jobStatus\": \"Active\"\n}"
+						},
+						"url": "{{baseUrl}}/jobs/{{jobId}}",
+						"description": "Update an existing job posting.\n\n**Authentication Required:** Yes (Job owner or Admin only)\n\n**Path Parameters:**\n- `jobId`: MongoDB ObjectId of the job\n\n**Body:** Any job fields to update\n\n**Response:**\n- Returns updated job information\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Job Updated Successfully",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"Senior Full Stack Engineer\",\n  \"salaryRange\": \"$90,000 - $130,000\"\n}"
+								},
+								"url": "http://localhost:5000/api/jobs/60d0fe4f5311236168a109cb"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n  \"message\": \"Job updated successfully\",\n  \"job\": {\n    \"_id\": \"60d0fe4f5311236168a109cb\",\n    \"title\": \"Senior Full Stack Engineer\",\n    \"description\": \"We are looking for an experienced software engineer...\",\n    \"companyName\": \"Tech Corp\",\n    \"location\": \"New York, NY\",\n    \"jobType\": \"Full-time\",\n    \"salaryRange\": \"$90,000 - $130,000\",\n    \"skills\": [\"JavaScript\", \"Node.js\", \"React\", \"MongoDB\"],\n    \"jobStatus\": \"Active\",\n    \"createdBy\": \"60d0fe4f5311236168a109ca\",\n    \"createdAt\": \"2025-01-10T10:00:00.000Z\",\n    \"updatedAt\": \"2025-01-10T11:00:00.000Z\"\n  }\n}"
+						},
+						{
+							"name": "Update Job",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"Senior Full Stack Engineer\",\n  \"salaryRange\": \"$90,000 - $130,000\",\n  \"jobStatus\": \"Active\"\n}"
+								},
+								"url": "{{baseUrl}}/jobs/{{jobId}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "509"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1fd-+qsIl6ScHJfG8CeGqE5Sug9Cv4Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 16:46:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Job updated successfully\",\n    \"job\": {\n        \"salaryRange\": \"$90,000 - $130,000\",\n        \"_id\": \"68713f77ab306f5537e174b4\",\n        \"title\": \"Senior Full Stack Engineer\",\n        \"description\": \"We are looking for an experienced software engineer to join our team.\",\n        \"companyName\": \"Tech Corp\",\n        \"location\": \"New York, NY\",\n        \"jobType\": \"Full-time\",\n        \"skills\": [\n            \"JavaScript\",\n            \"Node.js\",\n            \"React\",\n            \"MongoDB\"\n        ],\n        \"createdBy\": \"68713e25ab306f5537e174af\",\n        \"jobStatus\": \"Active\",\n        \"createdAt\": \"2025-07-11T16:44:39.400Z\",\n        \"updatedAt\": \"2025-07-11T16:46:16.750Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Job",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/jobs/{{jobId}}",
+						"description": "Delete a job posting and all associated applications.\n\n**Authentication Required:** Yes (Job owner or Admin only)\n\n**Path Parameters:**\n- `jobId`: MongoDB ObjectId of the job\n\n**Response:**\n- Returns success message\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Job Deleted Successfully",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:5000/api/jobs/60d0fe4f5311236168a109cb"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n  \"message\": \"Job deleted successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get My Jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/jobs/my",
+						"description": "Get all jobs created by the current employer.\n\n**Authentication Required:** Yes (Employer or Admin only)\n\n**Response:**\n- Returns list of jobs created by the current user\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Get My Jobs Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:5000/api/jobs/my-jobs"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n  \"jobs\": [\n    {\n      \"_id\": \"60d0fe4f5311236168a109cb\",\n      \"title\": \"Senior Software Engineer\",\n      \"description\": \"We are looking for an experienced software engineer...\",\n      \"companyName\": \"Tech Corp\",\n      \"location\": \"New York, NY\",\n      \"jobType\": \"Full-time\",\n      \"salaryRange\": \"$80,000 - $120,000\",\n      \"skills\": [\"JavaScript\", \"Node.js\", \"React\", \"MongoDB\"],\n      \"jobStatus\": \"Active\",\n      \"createdBy\": \"60d0fe4f5311236168a109ca\",\n      \"createdAt\": \"2025-01-10T10:00:00.000Z\"\n    }\n  ]\n}"
+						},
+						{
+							"name": "Get My Jobs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"url": "{{baseUrl}}/jobs/my"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "475"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1db-2TCeuP4K6iKOnlKYxHMIy7GLOKQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 16:46:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jobs\": [\n        {\n            \"salaryRange\": \"$90,000 - $130,000\",\n            \"_id\": \"68713f77ab306f5537e174b4\",\n            \"title\": \"Senior Full Stack Engineer\",\n            \"description\": \"We are looking for an experienced software engineer to join our team.\",\n            \"companyName\": \"Tech Corp\",\n            \"location\": \"New York, NY\",\n            \"jobType\": \"Full-time\",\n            \"skills\": [\n                \"JavaScript\",\n                \"Node.js\",\n                \"React\",\n                \"MongoDB\"\n            ],\n            \"createdBy\": \"68713e25ab306f5537e174af\",\n            \"jobStatus\": \"Active\",\n            \"createdAt\": \"2025-07-11T16:44:39.400Z\",\n            \"updatedAt\": \"2025-07-11T16:46:16.750Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"description": "Job management endpoints for creating, reading, updating, and deleting job postings.",
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "{{employerToken}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Applications",
+			"item": [
+				{
+					"name": "Apply for Job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"jobId\": \"{{jobId}}\",\n  \"coverLetter\": \"I am very interested in this position and believe my skills would be a great fit...\",\n  \"resume\": \"https://example.com/resume.pdf\"\n}"
+						},
+						"url": "{{baseUrl}}/applications/apply",
+						"description": "Submit a job application.\n\n**Authentication Required:** Yes (Candidate only)\n\n**Required Fields:**\n- `jobId`: MongoDB ObjectId of the job\n- `coverLetter`: Cover letter text\n- `resume`: Resume URL or text\n\n**Response:**\n- Returns created application\n- Status: 201 Created"
+					},
+					"response": [
+						{
+							"name": "Application Submitted Successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"jobId\": \"60d0fe4f5311236168a109cb\",\n  \"coverLetter\": \"I am very interested in this position...\",\n  \"resume\": \"https://example.com/resume.pdf\"\n}"
+								},
+								"url": "http://localhost:5000/api/applications"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n  \"message\": \"Application submitted successfully\",\n  \"application\": {\n    \"_id\": \"60d0fe4f5311236168a109cc\",\n    \"jobId\": \"60d0fe4f5311236168a109cb\",\n    \"candidateId\": \"60d0fe4f5311236168a109ca\",\n    \"coverLetter\": \"I am very interested in this position...\",\n    \"resume\": \"https://example.com/resume.pdf\",\n    \"status\": \"Applied\",\n    \"appliedAt\": \"2025-01-10T12:00:00.000Z\"\n  }\n}"
+						},
+						{
+							"name": "Apply for Job",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"jobId\": \"{{jobId}}\",\n  \"coverLetter\": \"I am very interested in this position and believe my skills would be a great fit...\",\n  \"resume\": \"https://example.com/resume.pdf\"\n}"
+								},
+								"url": "{{baseUrl}}/applications/apply"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "362"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16a-Y8ts4V+7BX4Rk8ijYO3cs0bUIRM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 16:53:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Application submitted successfully\",\n    \"application\": {\n        \"jobId\": \"68713f77ab306f5537e174b4\",\n        \"candidateId\": \"68713d3bab306f5537e174ac\",\n        \"coverLetter\": \"I am very interested in this position and believe my skills would be a great fit...\",\n        \"resume\": \"https://example.com/resume.pdf\",\n        \"_id\": \"687141700630535f5fe95144\",\n        \"appliedAt\": \"2025-07-11T16:53:04.490Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get My Applications",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/applications/my",
+						"description": "Get all applications submitted by the current candidate.\n\n**Authentication Required:** Yes (Candidate only)\n\n**Response:**\n- Returns list of applications with job details\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Get My Applications Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:5000/api/applications/my-applications"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n  \"applications\": [\n    {\n      \"_id\": \"60d0fe4f5311236168a109cc\",\n      \"jobId\": {\n        \"_id\": \"60d0fe4f5311236168a109cb\",\n        \"title\": \"Senior Software Engineer\",\n        \"companyName\": \"Tech Corp\",\n        \"location\": \"New York, NY\",\n        \"jobType\": \"Full-time\"\n      },\n      \"candidateId\": \"60d0fe4f5311236168a109ca\",\n      \"coverLetter\": \"I am very interested in this position...\",\n      \"resume\": \"https://example.com/resume.pdf\",\n      \"status\": \"Applied\",\n      \"appliedAt\": \"2025-01-10T12:00:00.000Z\"\n    }\n  ]\n}"
+						},
+						{
+							"name": "Get My Applications",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"url": "{{baseUrl}}/applications/my"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "437"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b5-MN3sGB6LYznzQcxZkGLSAhr6sok\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 16:53:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"applications\": [\n        {\n            \"_id\": \"687141700630535f5fe95144\",\n            \"jobId\": {\n                \"_id\": \"68713f77ab306f5537e174b4\",\n                \"title\": \"Senior Full Stack Engineer\",\n                \"companyName\": \"Tech Corp\",\n                \"location\": \"New York, NY\",\n                \"jobType\": \"Full-time\"\n            },\n            \"candidateId\": \"68713d3bab306f5537e174ac\",\n            \"coverLetter\": \"I am very interested in this position and believe my skills would be a great fit...\",\n            \"resume\": \"https://example.com/resume.pdf\",\n            \"appliedAt\": \"2025-07-11T16:53:04.490Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Job Applications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{employerToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/applications/job/{{jobId}}",
+						"description": "Get all applications for a specific job.\n\n**Authentication Required:** Yes (Job owner or Admin only)\n\n**Path Parameters:**\n- `jobId`: MongoDB ObjectId of the job\n\n**Response:**\n- Returns list of applications with candidate details\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Get Job Applications Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:5000/api/applications/job/60d0fe4f5311236168a109cb"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n  \"applications\": [\n    {\n      \"_id\": \"60d0fe4f5311236168a109cc\",\n      \"candidateId\": {\n        \"_id\": \"60d0fe4f5311236168a109ca\",\n        \"email\": \"candidate@example.com\"\n      },\n      \"jobId\": {\n        \"_id\": \"60d0fe4f5311236168a109cb\",\n        \"title\": \"Senior Software Engineer\",\n        \"companyName\": \"Tech Corp\"\n      },\n      \"coverLetter\": \"I am very interested in this position...\",\n      \"resume\": \"https://example.com/resume.pdf\",\n      \"status\": \"Applied\",\n      \"appliedAt\": \"2025-01-10T12:00:00.000Z\"\n    }\n  ]\n}"
+						},
+						{
+							"name": "Get Job Applications",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"url": "{{baseUrl}}/applications/job/{{jobId}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "429"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1ad-HaD2hWhwnMz4Yv76qy0FWsj1bDU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 16:54:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"applications\": [\n        {\n            \"_id\": \"687141700630535f5fe95144\",\n            \"jobId\": {\n                \"_id\": \"68713f77ab306f5537e174b4\",\n                \"title\": \"Senior Full Stack Engineer\",\n                \"companyName\": \"Tech Corp\"\n            },\n            \"candidateId\": {\n                \"_id\": \"68713d3bab306f5537e174ac\",\n                \"email\": \"candidate@example.com\"\n            },\n            \"coverLetter\": \"I am very interested in this position and believe my skills would be a great fit...\",\n            \"resume\": \"https://example.com/resume.pdf\",\n            \"appliedAt\": \"2025-07-11T16:53:04.490Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Application",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/applications/{{applicationId}}",
+						"description": "Delete a job application.\n\n**Authentication Required:** Yes (Application owner or Admin only)\n\n**Path Parameters:**\n- `applicationId`: MongoDB ObjectId of the application\n\n**Response:**\n- Returns success message\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Application Deleted Successfully",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:5000/api/applications/60d0fe4f5311236168a109cc"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n  \"message\": \"Application deleted successfully\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Job application management endpoints for candidates and employers.",
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "{{candidateToken}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/users?page=1&limit=10&role=candidate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number (default: 1)"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Users per page (default: 10)"
+								},
+								{
+									"key": "role",
+									"value": "candidate",
+									"description": "Filter by role (admin, employer, candidate)"
+								}
+							]
+						},
+						"description": "Get all users with pagination and filtering.\n\n**Authentication Required:** Yes (Admin only)\n\n**Query Parameters:**\n- `page`: Page number (default: 1)\n- `limit`: Users per page (default: 10)\n- `role`: Filter by role\n\n**Response:**\n- Returns paginated user list\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Get All Users Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/users?page=1&limit=10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"users"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n  \"users\": [\n    {\n      \"_id\": \"60d0fe4f5311236168a109ca\",\n      \"email\": \"user@example.com\",\n      \"role\": \"candidate\",\n      \"isBanned\": false,\n      \"createdAt\": \"2025-01-10T08:00:00.000Z\"\n    }\n  ],\n  \"totalPages\": 1,\n  \"currentPage\": 1,\n  \"total\": 1\n}"
+						},
+						{
+							"name": "Get All Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/users?page=1&limit=10&role=candidate",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"users"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page number (default: 1)"
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "Users per page (default: 10)"
+										},
+										{
+											"key": "role",
+											"value": "candidate",
+											"description": "Filter by role (admin, employer, candidate)"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "162"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a2-yogbSIe5v5MPr7aWoAYw9i5Q+Qg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 16:20:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"users\": [\n        {\n            \"_id\": \"686f9a021ecc3545bf57ff7d\",\n            \"email\": \"john.doe@example.com\",\n            \"role\": \"candidate\",\n            \"isBanned\": false,\n            \"__v\": 0\n        }\n    ],\n    \"totalPages\": 1,\n    \"currentPage\": 1,\n    \"total\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Ban User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/admin/ban/{{userId}}",
+						"description": "Ban a user account.\n\n**Authentication Required:** Yes (Admin only)\n\n**Path Parameters:**\n- `userId`: MongoDB ObjectId of the user\n\n**Response:**\n- Returns success message\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Ban User",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"url": "{{baseUrl}}/admin/ban/{{userId}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-MNK7C+8OiyFDvLqXOZl3XBUTPOM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 16:22:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User banned successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Unban User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/admin/unban/{{userId}}",
+						"description": "Unban a user account.\n\n**Authentication Required:** Yes (Admin only)\n\n**Path Parameters:**\n- `userId`: MongoDB ObjectId of the user\n\n**Response:**\n- Returns success message\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Unban User",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"url": "{{baseUrl}}/admin/unban/{{userId}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-lcruXh1FFZaOYQLm7UYBqBxrH8c\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 16:23:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User unbanned successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/admin/users/{{userId}}",
+						"description": "Delete a user and all associated data.\n\n**Authentication Required:** Yes (Admin only)\n\n**Path Parameters:**\n- `userId`: MongoDB ObjectId of the user\n\n**Response:**\n- Returns success message\n- Status: 200 OK\n\n**Note:** This will delete all jobs and applications associated with the user."
+					},
+					"response": [
+						{
+							"name": "Delete User",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"url": "{{baseUrl}}/admin/users/{{userId}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-jIRXR3lyfUlhNaDpPRV0JKmbxjw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 16:26:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User and associated data deleted successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Dashboard Stats",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/admin/stats",
+						"description": "Get system statistics for admin dashboard.\n\n**Authentication Required:** Yes (Admin only)\n\n**Response:**\n- Returns comprehensive system statistics\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Get Dashboard Stats",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"url": "{{baseUrl}}/admin/stats"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "203"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cb-yQ0XEv48AsJsv0IJV2vF51pIq78\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 16:58:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"totalUsers\": 4,\n    \"totalEmployers\": 1,\n    \"totalCandidates\": 2,\n    \"bannedUsers\": 0,\n    \"totalJobs\": 1,\n    \"activeJobs\": 1,\n    \"inactiveJobs\": 0,\n    \"totalApplications\": 1,\n    \"recentActivity\": {\n        \"newUsers\": 0,\n        \"newJobs\": 1,\n        \"newApplications\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Applications (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/applications?page=1&limit=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"applications"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number (default: 1)"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Applications per page (default: 10)"
+								}
+							]
+						},
+						"description": "Get all applications in the system with pagination.\n\n**Authentication Required:** Yes (Admin only)\n\n**Query Parameters:**\n- `page`: Page number (default: 1)\n- `limit`: Applications per page (default: 10)\n\n**Response:**\n- Returns paginated application list\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Get All Applications (Admin)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/applications?page=1&limit=10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"applications"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page number (default: 1)"
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "Applications per page (default: 10)"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "500"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f4-gfgLQIjJEv8s3u+OSrHbMMnx0gY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 17:08:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"applications\": [\n        {\n            \"applicationStatus\": \"pending\",\n            \"_id\": \"687141700630535f5fe95144\",\n            \"jobId\": {\n                \"_id\": \"68713f77ab306f5537e174b4\",\n                \"title\": \"Senior Full Stack Engineer\",\n                \"companyName\": \"Tech Corp\"\n            },\n            \"candidateId\": {\n                \"_id\": \"68713d3bab306f5537e174ac\",\n                \"email\": \"candidate@example.com\"\n            },\n            \"coverLetter\": \"I am very interested in this position and believe my skills would be a great fit...\",\n            \"resume\": \"https://example.com/resume.pdf\",\n            \"appliedAt\": \"2025-07-11T16:53:04.490Z\",\n            \"__v\": 0\n        }\n    ],\n    \"totalPages\": 1,\n    \"currentPage\": 1,\n    \"total\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Jobs(Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/admin/jobs?page=1&limit=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"jobs"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number (default: 1)"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Applications per page (default: 10)"
+								}
+							]
+						},
+						"description": "Get all applications in the system with pagination.\n\n**Authentication Required:** Yes (Admin only)\n\n**Query Parameters:**\n- `page`: Page number (default: 1)\n- `limit`: Applications per page (default: 10)\n\n**Response:**\n- Returns paginated application list\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Get All Applications (Admin) Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/jobs?page=1&limit=10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"jobs"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page number (default: 1)"
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "Applications per page (default: 10)"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "555"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"22b-+YGMdVpVXLn/YQyF73S1p3Myz8M\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 17:09:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jobs\": [\n        {\n            \"salaryRange\": \"$90,000 - $130,000\",\n            \"_id\": \"68713f77ab306f5537e174b4\",\n            \"title\": \"Senior Full Stack Engineer\",\n            \"description\": \"We are looking for an experienced software engineer to join our team.\",\n            \"companyName\": \"Tech Corp\",\n            \"location\": \"New York, NY\",\n            \"jobType\": \"Full-time\",\n            \"skills\": [\n                \"JavaScript\",\n                \"Node.js\",\n                \"React\",\n                \"MongoDB\"\n            ],\n            \"createdBy\": {\n                \"_id\": \"68713e25ab306f5537e174af\",\n                \"email\": \"employer@example.com\"\n            },\n            \"jobStatus\": \"Active\",\n            \"createdAt\": \"2025-07-11T16:44:39.400Z\",\n            \"updatedAt\": \"2025-07-11T16:46:16.750Z\",\n            \"__v\": 0\n        }\n    ],\n    \"totalPages\": 1,\n    \"currentPage\": 1,\n    \"total\": 1\n}"
+						}
+					]
+				}
+			],
+			"description": "Administrative endpoints for user and system management.",
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "{{adminToken}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/health",
+						"description": "Check if the API is running and healthy.\n\n**Authentication Required:** No\n\n**Response:**\n- Returns API status and timestamp\n- Status: 200 OK"
+					},
+					"response": [
+						{
+							"name": "Health Check",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{baseUrl}}/health"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5c-iUxGMS7IMX1WClNwc/AsfrcNWuI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jul 2025 16:32:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"OK\",\n    \"message\": \"Job Portal API is running\",\n    \"timestamp\": \"2025-07-11T16:32:39.439Z\"\n}"
+						}
+					]
+				}
+			],
+			"description": "System health and status endpoints."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5000/api",
+			"type": "string"
+		},
+		{
+			"key": "authToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "jobId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "applicationId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
